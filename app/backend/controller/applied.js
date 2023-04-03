@@ -60,7 +60,7 @@ exports.getApplied=async (req,res,next)=>{
         let obj=[];
              for(var i=0;i<jobs.length;i++)
              {
-                obj.push({job:jobs[i].jobName,qualification:jobs[i].graduation,
+                obj.push({id:generateToken(jobs[i].jobId),job:jobs[i].jobName,qualification:jobs[i].graduation,
                     location:jobs[i].location,experience:jobs[i].experience});
              } 
              res.json(obj);

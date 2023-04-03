@@ -15,6 +15,7 @@ import Editrecprofile from "./recruiter/edit-profile/Editprofile";
 import Details from "./recruiter/job-details/Jobdetails";
 import EditJob from "./recruiter/edit-job/Editjob";
 import JobDetails from "./components/job-details/Jobdetails";
+import AppliedDetails from "./components/applied-details/Applieddetails";
 
 function App() {
  
@@ -37,6 +38,7 @@ function App() {
     <Route path="/rec/profile/edit" element={<Editrecprofile></Editrecprofile>}/>
     <Route path="/rec/yourjobs/details/:id" element={<Details></Details>}/>
     <Route path="/rec/yourjobs/details/edit/:id" element={<EditJob></EditJob>}/>
+    <Route path="/home/appliedjobs/details/:id" element={<AppliedDetails></AppliedDetails>}/>
     </Routes>
    </BrowserRouter>
   );
