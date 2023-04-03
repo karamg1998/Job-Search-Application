@@ -17,7 +17,7 @@ function Interested()
        try{
             axios.get('http://localhost:4000/getappliers',{headers:{'token':user.token}})
             .then(res=>{
-                console.log(res.data)
+                console.log('ys',res.data)
                 setData(res.data);
                 
             })

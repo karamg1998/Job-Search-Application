@@ -1,5 +1,6 @@
 const job = require("../models/jobs");
 const user = require("../models/user");
+const applied=require('../models/applied');
 const jwt = require("jsonwebtoken");
 
 function generateToken(id) {
@@ -140,14 +141,17 @@ exports.allJobs=async (req,res,next)=>{
     }
     else
     {
-      return job.findAll();
+      return job.findAll({include:applied});
     }
   }).then(jobs=>{
     let obj=[];
     for(var i=0;i<jobs.length;i++)
     {
-       obj.push({id:generateToken(jobs[i].id),job:jobs[i].jobName,qualification:jobs[i].graduation,
-           location:jobs[i].location,description:jobs[i].description,experience:jobs[i].experience});
+       if(jobs[i].applieds.length==0)
+       {
+        obj.push({id:generateToken(jobs[i].id),job:jobs[i].jobName,qualification:jobs[i].graduation,
+          location:jobs[i].location,description:jobs[i].description,experience:jobs[i].experience}); 
+       }
     }
     res.json(obj);
   })
