@@ -19,7 +19,7 @@ function AppliedJobs()
         try{
           await axios.get('http://localhost:4000/appliedjobs',{headers:{'token':user.token}})
           .then(res=>{
-            console.log('y',res.data);
+            console.log('yes',res.data);
             setData(res.data);
           })
         }

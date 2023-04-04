@@ -17,6 +17,26 @@ function Signup() {
     if(e.target.id==='signup')
     {
       rec='false';
+      if(name==='')
+      {
+        popup('name is mandatory')
+        return;
+      }
+      if(email==='')
+      {
+        popup('email is mandatory')
+        return;
+      }
+      if(phone==='')
+      {
+        popup('phone is mandatory')
+        return;
+      }
+      if(pass==='')
+      {
+        popup('password is mandatory')
+        return;
+      }
       let obj={name,email,phone,pass,rec}
       try{
        axios.post("http://localhost:4000/adduser",obj)
@@ -38,6 +58,26 @@ function Signup() {
     if(e.target.id==='recruiter')
     {
       rec='true';
+      if(name==='')
+      {
+        popup('name is mandatory')
+        return;
+      }
+      if(email==='')
+      {
+        popup('email is mandatory')
+        return;
+      }
+      if(phone==='')
+      {
+        popup('phone is mandatory')
+        return;
+      }
+      if(pass==='')
+      {
+        popup('password is mandatory')
+        return;
+      }
       let obj={name,email,phone,pass,rec}
       try{
        axios.post("http://localhost:4000/adduser",obj)

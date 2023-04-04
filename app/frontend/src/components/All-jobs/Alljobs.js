@@ -19,7 +19,7 @@ function AllJobs()
         try{
             await axios.get('http://localhost:4000/alljobs',{headers:{'token':user.token}})
             .then(res=>{
-                console.log('yes',res.data);
+                console.log(res.data);
                 setData(res.data);
             })
         }
@@ -43,6 +43,7 @@ function AllJobs()
         try{
             await axios.post('http://localhost:4000/job/apply',obj)
             .then(res=>{
+                console.log('yes',res.data);
                 if(res.data.success===true)
                 {
                     popup(res.data.message);
@@ -74,11 +75,12 @@ function AllJobs()
         <section className='job-container'>
            {data.map((d,i)=>{
             return(
-            <div className='your-j' id={d.id}>
+            <div className='your' id={d.id}>
                 <span className='jobname'>{d.job}</span>
                 <span className='loc'><i class='fa fa-map-marker'></i> {d.location}</span>
                 <span className='quali'>Minimum Qualification: {d.qualification}</span>
                 <span className='exp'>Experience: {d.experience}</span>
+                <span className='re'>Recruiter: {d.recruiter}</span>
                 <button id='details' onClick={details}>Details</button>
                 <button id='apply' onClick={apply}>Apply</button>
             </div>)
