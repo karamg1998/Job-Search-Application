@@ -2,6 +2,7 @@ const job = require("../models/jobs");
 const user = require("../models/user");
 const applied=require('../models/applied');
 const jwt = require("jsonwebtoken");
+const {Op}=require('sequelize');
 
 function generateToken(id) {
   return jwt.sign({ Id: id }, "hffgjhfgjhfgj");
@@ -30,6 +31,7 @@ exports.postJob = async (req, res, next) => {
           graduation: qualification,
           description:desc,
           experience:experience,
+          recruiter:user.name,
           userId: user.id,
         });
       }
@@ -141,20 +143,26 @@ exports.allJobs=async (req,res,next)=>{
     }
     else
     {
-      return job.findAll({include:applied});
+      return applied.findAll({where:{userID:user.id}});
     }
   }).then(jobs=>{
-    let obj=[];
+    let jobId=[];
     for(var i=0;i<jobs.length;i++)
     {
-       if(jobs[i].applieds.length==0)
-       {
-        obj.push({id:generateToken(jobs[i].id),job:jobs[i].jobName,qualification:jobs[i].graduation,
-          location:jobs[i].location,description:jobs[i].description,experience:jobs[i].experience}); 
-       }
+        jobId.push(jobs[i].jobId);
     }
-    res.json(obj);
-  })
+
+    return  job.findAll({where:{id:{[Op.notIn]:jobId}}})
+  })  .then(jobs=>{
+     let ob=[];
+    for(var i=0;i<jobs.length;i++)
+    {
+        ob.push({id:generateToken(jobs[i].id),job:jobs[i].jobName,qualification:jobs[i].graduation,
+          location:jobs[i].location,description:jobs[i].description,experience:jobs[i].experience,
+          recruiter:jobs[i].recruiter}); 
+    }  
+    res.json(ob);
+  }) 
  }
  catch(err)
  {

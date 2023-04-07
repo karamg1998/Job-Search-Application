@@ -43,7 +43,7 @@ function AllJobs()
         try{
             await axios.post('http://localhost:4000/job/apply',obj)
             .then(res=>{
-                console.log('yes',res.data);
+                console.log(res.data);
                 if(res.data.success===true)
                 {
                     popup(res.data.message);

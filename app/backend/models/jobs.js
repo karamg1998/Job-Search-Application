@@ -12,6 +12,10 @@ const Jobs=sequelize.define('jobs',{
         type:Sequelize.STRING,
         allowNull:false
     },
+    recruiter:{
+        type:Sequelize.STRING,
+        allowNull:false
+    },
     location:Sequelize.STRING,
     graduation:Sequelize.STRING,
     description:Sequelize.STRING,
