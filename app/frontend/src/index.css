@@ -10,7 +10,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url('../public/chatgpt-in-recruitment.jpg');
+  background-image: url('https://img.freepik.com/free-vector/team-leader-teamwork-concept_74855-6671.jpg?w=1380&t=st=1681118570~exp=1681119170~hmac=89fc0f8ff2e02d1e5fbdc84ccb34ceaa7150937d03a070b0c5dc587b0f3073db');
+ background-repeat: no-repeat;
+ background-position:center 50px;
 }
 
 code {
